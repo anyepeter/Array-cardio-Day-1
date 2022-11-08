@@ -8,6 +8,12 @@ const inventors = [
   { first: 'Max', last: 'Planck', year: 1858  ,passed: 1947}
 ]
 
+const people = [
+  'Beck Glenn', 'Becker Carl', 'Bdeckett Samuel', 'Beddoes Mick', 'Beecher Henry', 'Beethoven Ludwig', 'Begin Menachem',
+  'Belloc Hilaire', 'Bellow saul', 'Benchley Robert', 'Benenson Peter', 'Ben-Gurion David', 'Benjamin David'
+]
+
+//filter the array base on the inventors born in 1500
 const filterfifteen = inventors.filter((inven) =>{
   if(inven.year >= 1500 && inven.year < 1600){
     return true;
@@ -16,9 +22,62 @@ const filterfifteen = inventors.filter((inven) =>{
 
 console.table(filterfifteen)
 
+// display the first and last name for each inventor 
 const mappArr = inventors.map(inven => `${inven.first}  ${inven.last} `)
 
 console.table(mappArr)
-
+ 
+// sort the inventors base on  their years 
 const arrSort = inventors.sort( (a, b) => a.year > b.year ? 1 : -1)
 console.log(arrSort)
+
+// calcute the sum of their ages
+const totalYear = inventors.reduce( (total, inven) =>{
+  return total + (inven.passed- inven.year)
+},0)
+
+console.log(totalYear)
+
+
+// sort the inventors by year live 
+
+const yearLive = inventors.sort((a, b) => {
+const firstGuy = a.passed - a.year
+const secondGuy = b.passed - b.year
+
+return firstGuy > secondGuy ? -1 : 1
+})
+
+console.table(yearLive)
+
+
+// sort the people alphabetically from their second name
+const peopleSort = people.sort((firstName, lastName) => {
+  const [afirst, alast] = firstName.split(' ')
+  const [bfirst, blast] = lastName.split(' ')
+
+  return alast > blast ? 1 : -1
+  
+})
+
+console.log(peopleSort)
+
+
+const data = [
+  'car','car','car','car','car', 'truck','truck','truck','bikes','bikes','walk','walk','van','van'
+]
+
+const transport = data.reduce( (obj, item) => {
+
+  if(!obj[item]) {
+    obj[item] = 0
+  }
+
+  obj[item]++
+
+  return obj;
+
+
+}, {})
+
+console.log(transport)
